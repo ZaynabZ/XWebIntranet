@@ -1,0 +1,33 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class EditCongesTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::table('conges', function (Blueprint $table) {
+            $table->bigInteger('service_id')->unsigned();
+            $table->foreign('service_id')->references('id')->on('services');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table('conges', function (Blueprint $table) {
+            $table->dropColumn('service_id');
+        });
+    }
+}
